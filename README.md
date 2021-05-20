@@ -1,8 +1,8 @@
 ### Dockerfile && docker-compose.yml
-
+```
 docker build -t github_pm .
 docker-compose up
-
+```
 
 
 ### swagger-ui
