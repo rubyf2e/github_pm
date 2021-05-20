@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GithubController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SwaggerAPIDocsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +18,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1.0'], function () {
+
+	Route::group(['namespace' => 'Github', 'prefix' => 'Github'], function () {
+		Route::get('/UserData/{user?}', [GithubController::class, 'UserData']);
+		Route::get('/UserRepos/{user?}', [GithubController::class, 'UserRepos']);
+		Route::get('/UserAccessTokenRepos', [GithubController::class, 'UserAccessTokenRepos']);
+		Route::post('/UserAccessTokenCreateRepos', [GithubController::class, 'UserAccessTokenRepos']);
+	});
+
+	Route::get('/get-api-document', [SwaggerAPIDocsController::class, 'getJSON']);
+	Route::post('/User/createUser', [UserController::class, 'createUser']);
+
 });
 
 
-Route::get('/get-api-document', 'SwaggerAPIDocsController@getJSON');
-Route::get('/User/allUser', 'UserController@allUser');
-Route::get('/Github/UserGithubData', 'GithubController@UserGithubData');
+
+
 
 

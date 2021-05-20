@@ -1,0 +1,13 @@
+web:
+     image: nginx:latest
+     ports:
+     - "8080:80"
+     volumes:
+     - ../github_pm:/var/www/github_pm
+     - ./default.conf:/etc/nginx/conf.d/default.conf
+     links:
+        - php
+php:
+    image: github_pm
+    volumes:
+    - ../github_pm:/var/www/github_pm

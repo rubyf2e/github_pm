@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SwaggerAPIDocsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'SwaggerAPIDocsController@getJSON');
-
+Route::get('/', function () {
+      return Redirect::to('/swagger-ui/dist/index.html');
+});
