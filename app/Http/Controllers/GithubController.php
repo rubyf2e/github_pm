@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 
 class GithubController extends Controller
 {
+
+    public function githubWebhook(Request $request)
+    {
+        Log::info(json_decode((String)$request->getContent()).'</br></br>');
+        $contents = File::get(storage_path('logs/laravel.log'));
+        return $contents;
+    }
+
+
     /**
      *   
      * @SWG\post(
