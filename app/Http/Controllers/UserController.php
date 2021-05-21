@@ -10,7 +10,8 @@ class UserController extends Controller
 
     /**
      *   
-     * @SWG\post(path="/api/v1.0/User/createUser/",
+     * @SWG\post(
+     *   path="/api/v1.0/User/createUser/",
      *   tags={"User"},
      *   summary="建立使用者",
      *   description="測試用",

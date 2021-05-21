@@ -24,7 +24,12 @@ Route::group(['prefix' => 'v1.0'], function () {
 		Route::get('/UserData/{user?}', [GithubController::class, 'UserData']);
 		Route::get('/UserRepos/{user?}', [GithubController::class, 'UserRepos']);
 		Route::get('/UserAccessTokenRepos', [GithubController::class, 'UserAccessTokenRepos']);
-		Route::post('/UserAccessTokenCreateRepos', [GithubController::class, 'UserAccessTokenRepos']);
+		Route::post('/UserAccessTokenCreateRepos', [GithubController::class, 'UserAccessTokenCreateRepos']);
+		Route::post('/UserAccessTokenCreateCommit', [GithubController::class, 'UserAccessTokenCreateCommit']);
+		Route::post('/UserAccessTokenCreateBlob', [GithubController::class, 'UserAccessTokenCreateBlob']);
+		Route::post('/UserAccessTokenGetBlob/{file_sha}', [GithubController::class, 'UserAccessTokenGetBlob']);
+
+
 	});
 
 	Route::get('/get-api-document', [SwaggerAPIDocsController::class, 'getJSON']);
