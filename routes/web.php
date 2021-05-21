@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GithubController;
 use App\Http\Controllers\SwaggerAPIDocsController;
 
 /*
@@ -17,3 +18,6 @@ use App\Http\Controllers\SwaggerAPIDocsController;
 Route::get('/', function () {
       return Redirect::to('/swagger-ui/dist/index.html');
 });
+
+
+Route::match(['get', 'post'], '/github-webhook/', [GithubController::class, 'githubWebhook']);
