@@ -21,6 +21,10 @@ https://docs.github.com/cn/developers/apps/getting-started-with-apps/setting-up-
 
 https://www.jenkins.io/blog/2019/01/07/webhook-firewalls/
 <br>
+
+https://pineco.de/handling-webhooks-with-laravel/
+<br>
+
 ```
 npm install --global smee-client
 smee --help
