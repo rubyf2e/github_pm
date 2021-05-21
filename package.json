@@ -11,8 +11,13 @@
     },
     "devDependencies": {
         "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
+        "laravel-mix": "^6.0.19",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14"
+    },
+    "dependencies": {
+        "path-browserify": "^0.0.1",
+        "smee-client": "^1.2.2",
+        "stream-http": "^2.8.3"
     }
 }
