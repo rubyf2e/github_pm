@@ -13,7 +13,7 @@ class GithubController extends Controller
 
     public function githubWebhook(Request $request)
     {
-        Log::info(json_decode($request->all()).'</br></br>');
+        Log::info($request->all().'</br></br>');
         $contents = File::get(storage_path('logs/laravel.log'));
         return $contents;
     }
