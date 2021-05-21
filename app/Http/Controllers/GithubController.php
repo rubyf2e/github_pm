@@ -166,6 +166,48 @@ class GithubController extends Controller
     } 
 
 
+
+        /**
+     *   
+     * @SWG\get(
+     *   path="/api/v1.0/Github/UserAccessTokenGetCommit/{commit_sha}",
+     *   tags={"Github"},
+     *   summary="GithubController/UserAccessTokenGetCommit",
+     *   description="",
+     *   produces={"application/json"},
+     *     @SWG\Parameter(
+     *       parameter="path",
+     *       name="commit_sha",
+     *       type="string",
+     *       in="path",
+     *       description=""
+     *     ),
+     *     @SWG\Parameter(
+     *       parameter="HeaderSign",
+     *       name="Authorization",
+     *       type="string",
+     *       in="header",
+     *       description="github token"
+     *     ),
+     *   @SWG\Response(response="201", description="資源成功建立"),
+     *   @SWG\Response(response="400", description="請求格式錯誤"),
+     *   @SWG\Response(response="404", description="資源不存在 ( Not Found)"),
+     *   @SWG\Response(response="401", description="拒絕存取 ( Unauthenticated)")
+     * )
+     *
+     */
+
+    public function UserAccessTokenGetCommit(Request $request, $commit_sha, $user = 'rubyf2e', $repo = 'github_pm')
+    {
+        $response = Http::withHeaders([
+            'Accept'        => 'application/vnd.github.v3+json',
+            'Authorization' => 'token '.env('GITHUB_PERSONAL_ACCESS_TOKEN', $request->github_personal_access_token),
+        ])->get('https://api.github.com/repos/' .$user. '/' .$repo. '/git/commits/' .$commit_sha);
+        return response()->json($response->json());
+    } 
+
+
+
     /**
      *   
      * @SWG\get(
@@ -296,6 +338,105 @@ class GithubController extends Controller
         ]);
         return response()->json($response->json());
     } 
+
+
+     /**
+     *   
+     * @SWG\post(
+     *   path="/api/v1.0/Github/UserAccessTokenCreateTrees",
+     *   tags={"Github"},
+     *   summary="GithubController/UserAccessTokenCreateTrees",
+     *   description="",
+     *   produces={"application/json"},
+     *     @SWG\Parameter(
+     *       parameter="HeaderSign",
+     *       name="Authorization",
+     *       type="string",
+     *       in="header",
+     *       description="github token"
+     *     ),
+     *     @SWG\Parameter(
+     *          name="body",
+     *          in="body",
+     *          required=true,
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="tree",
+     *                  type="string",
+     *                  description="[
+                                      {
+                                        path: 'path',
+                                        mode: 'mode',
+                                        type: 'type',
+                                        sha: 'sha',
+                                        content: 'content'
+                                      }
+                                   ]"
+     *              )
+     *          )
+     *     ),
+     *   @SWG\Response(response="201", description="資源成功建立"),
+     *   @SWG\Response(response="400", description="請求格式錯誤"),
+     *   @SWG\Response(response="404", description="資源不存在 ( Not Found)"),
+     *   @SWG\Response(response="401", description="拒絕存取 ( Unauthenticated)")
+     * )
+     *
+     */
+
+    public function UserAccessTokenCreateTrees(Request $request, $user = 'rubyf2e', $repo = 'github_pm')
+    {
+        $response = Http::withHeaders([
+            'Accept'        => 'application/vnd.github.v3+json',
+            'Authorization' => 'token '.env('GITHUB_PERSONAL_ACCESS_TOKEN', $request->github_personal_access_token),
+        ])->post('https://api.github.com/repos/' .$user. '/' .$repo. '/git/trees',  [
+            'tree' =>  $request->tree
+        ]);
+        return response()->json($response->json());
+    } 
+
+
+
+     /**
+     *   
+     * @SWG\get(
+     *   path="/api/v1.0/Github/UserAccessTokenGetTrees/{tree_sha}",
+     *   tags={"Github"},
+     *   summary="GithubController/UserAccessTokenGetTrees/{tree_sha}",
+     *   description="",
+     *   produces={"application/json"},
+     *     @SWG\Parameter(
+     *       parameter="path",
+     *       name="tree_sha",
+     *       type="string",
+     *       in="path",
+     *       description=""
+     *     ),
+     *     @SWG\Parameter(
+     *       parameter="HeaderSign",
+     *       name="Authorization",
+     *       type="string",
+     *       in="header",
+     *       description="github token"
+     *     ),
+     *   @SWG\Response(response="201", description="資源成功建立"),
+     *   @SWG\Response(response="400", description="請求格式錯誤"),
+     *   @SWG\Response(response="404", description="資源不存在 ( Not Found)"),
+     *   @SWG\Response(response="401", description="拒絕存取 ( Unauthenticated)")
+     * )
+     *
+     */
+
+    public function UserAccessTokenGetTrees(Request $request, $tree_sha, $user = 'rubyf2e', $repo = 'github_pm')
+    {
+        $response = Http::withHeaders([
+            'Accept'        => 'application/vnd.github.v3+json',
+            'Authorization' => 'token '.env('GITHUB_PERSONAL_ACCESS_TOKEN', $request->github_personal_access_token),
+        ])->post('https://api.github.com/repos/' .$user. '/' .$repo. '/git/trees/' .$tree_sha);
+        return response()->json($response->json());
+    } 
+
+
+
 
 
 }

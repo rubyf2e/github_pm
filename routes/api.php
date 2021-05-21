@@ -26,9 +26,11 @@ Route::group(['prefix' => 'v1.0'], function () {
 		Route::get('/UserAccessTokenRepos', [GithubController::class, 'UserAccessTokenRepos']);
 		Route::post('/UserAccessTokenCreateRepos', [GithubController::class, 'UserAccessTokenCreateRepos']);
 		Route::post('/UserAccessTokenCreateCommit', [GithubController::class, 'UserAccessTokenCreateCommit']);
+		Route::get('/UserAccessTokenGetCommit/{commit_sha}', [GithubController::class, 'UserAccessTokenGetCommit']);
 		Route::post('/UserAccessTokenCreateBlob', [GithubController::class, 'UserAccessTokenCreateBlob']);
 		Route::post('/UserAccessTokenGetBlob/{file_sha}', [GithubController::class, 'UserAccessTokenGetBlob']);
-
+		Route::post('/UserAccessTokenCreateTrees', [GithubController::class, 'UserAccessTokenCreateTrees']);
+		Route::get('/UserAccessTokenGetTrees/{tree_sha}', [GithubController::class, 'UserAccessTokenGetTrees']);
 
 	});
 
